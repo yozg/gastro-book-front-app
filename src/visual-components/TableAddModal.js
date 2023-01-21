@@ -1,34 +1,28 @@
-import {useState} from "react";
-import {Alert, Modal, Pressable, View, StyleSheet, Text} from "react-native";
+import {Alert, Modal, Pressable, StyleSheet, Text, View} from "react-native";
 
-
-export const TableConstructorModal = ({ table, setModalVisible, modalVisible }) => {
+export const TableAddModal = ({ table, setModalVisible, modalVisible }) => {
     const title = table === undefined ? 'Nan' : table.id.toString();
     console.log(table);
     return (
         <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-            setModalVisible(!modalVisible);
-        }}>
-        <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-                <Text style={styles.modalText}>{(title)}</Text>
-                <Text style={styles.modalText}>{(`X: ${table.moveX}`)}</Text>
-                <Text style={styles.modalText}>{(`Y: ${table.moveY}`)}</Text>
-
-
-                <Pressable
-                    style={[styles.button, styles.buttonClose]}
-                    onPress={() => setModalVisible(!modalVisible)}>
-                    <Text style={styles.textStyle}>Hide Modal</Text>
-                </Pressable>
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+                Alert.alert('Modal has been closed.');
+                setModalVisible(!modalVisible);
+            }}>
+            <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                    <Text style={styles.modalText}>{(title)}</Text>
+                    <Pressable
+                        style={[styles.button, styles.buttonClose]}
+                        onPress={() => setModalVisible(!modalVisible)}>
+                        <Text style={styles.textStyle}>Hide Modal</Text>
+                    </Pressable>
+                </View>
             </View>
-        </View>
-    </Modal>
+        </Modal>
     );
 }
 

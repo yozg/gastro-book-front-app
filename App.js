@@ -8,13 +8,13 @@ import {TableConstructorModal} from "./src/visual-components/TableConstructorMod
 
 export default function App() {
   const [tables, setTables] = useState([]);
-    const [modalVisible, setModalVisible] = useState(false);
-    const [index, setIndex] = useState();
 
     const addTable = (title) => {
       const newTable = {
           id: Date.now().toString(),
           title: title,
+          moveX: 100,
+          moveY: 100,
       };
 
       setTables((prevTables) => {
@@ -25,17 +25,16 @@ export default function App() {
       });
   }
 
-  const invokeModal = (table) => {
-    setIndex(() => {
-        console.log(tables.indexOf(table))
-        return tables.indexOf(table);
-    })
-    setModalVisible(true);
-  }
+  // const invokeModal = (table) => {
+  //   setIndex(() => {
+  //       console.log(tables.indexOf(table))
+  //       return tables.indexOf(table);
+  //   })
+  //   setModalVisible(true);
+  // }
 
   return (
     <View style={styles.container}>
-        <TableConstructorModal table={tables[index]} setModalVisible={setModalVisible} modalVisible={modalVisible} />
         <TextInput />
         <AddTable onSubmit={addTable}/>
 
@@ -44,7 +43,6 @@ export default function App() {
                 (<Table
                     table={table}
                     key={table.id}
-                    invokeModal={invokeModal}
                 />)
             )}
         </View>
